@@ -8,7 +8,7 @@ namespace FizzBuzz.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         [BindProperty]
-        public FizzBuzzForm FizzBuzz { get; set; }
+        public FizzBuzzForm FizzBuzz { get; set; } = new FizzBuzzForm();
         [BindProperty(SupportsGet = true)]
         public string Name { get; set; }
 
@@ -16,7 +16,6 @@ namespace FizzBuzz.Pages
         {
             _logger = logger;
         }
-
         public void OnGet()
         {
             if (string.IsNullOrWhiteSpace(Name))
@@ -26,12 +25,15 @@ namespace FizzBuzz.Pages
         }
         public IActionResult OnPost()
         {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                Name = "User";
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
             }
             return RedirectToPage("./Privacy");
         }
-
     }
 }
