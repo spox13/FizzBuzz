@@ -29,11 +29,32 @@ namespace FizzBuzz.Pages
             {
                 Name = "User";
             }
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return Page();
+            }*/
+
+            if (FizzBuzz.Number != null && (FizzBuzz.Number > 0 && FizzBuzz.Number < 1001))
+            {
+                if (FizzBuzz.Number % 3 == 0 && FizzBuzz.Number % 5 == 0)
+                {
+                    ViewData["Message"] = "FizzBuzz";
+                }
+                else if (FizzBuzz.Number % 3 == 0)
+                {
+                    ViewData["Message"] = "Fizz";
+                }
+                else if (FizzBuzz.Number % 5 == 0)
+                {
+                    ViewData["Message"] = "Buzz";
+                }
+                else
+                {
+                    ViewData["Message"] = $"Liczba: {FizzBuzz.Number} nie spełnia kryteriów FizzBuzz";
+                }
             }
-            return RedirectToPage("./Privacy");
+
+            return Page();
         }
     }
 }

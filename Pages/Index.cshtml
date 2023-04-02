@@ -12,31 +12,16 @@
     </form>
     <span asp-validation-for="FizzBuzz.Number" class="text-danger"></span>
 
-    @if (Model.FizzBuzz.Number != null && (Model.FizzBuzz.Number > 0 && Model.FizzBuzz.Number < 1001))
+    @if (ViewData["Message"] != null && Model.FizzBuzz.Number % 3 != 0 && Model.FizzBuzz.Number % 5 != 0)
     {
-        @if (Model.FizzBuzz.Number % 3 == 0 && Model.FizzBuzz.Number % 5 == 0)
-        {
-            <div class="alert alert-success" role="alert">
-                FizzBuzz
-            </div>
-        }
-        else if (Model.FizzBuzz.Number % 3 == 0)
-        {
-            <div class="alert alert-success" role="alert">
-                Fizz
-            </div>
-        }
-        else if (Model.FizzBuzz.Number % 5 == 0)
-        {
-            <div class="alert alert-success" role="alert">
-                Buzz
-            </div>
-        }
-        else
-        {
-            <div class="alert alert-warning" role="alert">
-                Liczba: @Model.FizzBuzz.Number nie spełnia kryteriów FizzBuzz
-            </div>
-        }
+        <div class="alert alert-warning" role="alert">
+            @ViewData["Message"]
+        </div>
+    }
+    else if (ViewData["Message"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @ViewData["Message"]
+        </div>
     }
 </div>
